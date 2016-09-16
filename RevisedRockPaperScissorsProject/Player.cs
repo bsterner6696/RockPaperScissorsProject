@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RevisedRockPaperScissorsProject
 {
-    public class Player
+    abstract public class Player
     {
         public int playerChoice;
         public string name;
@@ -52,25 +52,7 @@ namespace RevisedRockPaperScissorsProject
                     break;
             }
         }
-        public void DetermineIfComputer()
-        {
-            string choice;
-            choice = Console.ReadLine();
-            switch (choice.ToLower())
-            {
-                case "computer":
-                    isComputer = true;
-                    break;
-                case "human":
-                    isComputer = false;
-                    name = "player 2";
-                    break;
-                default:
-                    Console.WriteLine("Enter valid choice. 'computer' or 'human'");
-                    DetermineIfComputer();
-                    break;
-            }
-        }
+        
 
     }
 }

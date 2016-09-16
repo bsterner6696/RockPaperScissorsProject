@@ -9,22 +9,41 @@ namespace RevisedRockPaperScissorsProject
     class Game
     {
         public int winner;
-        Player player1 = new Player();
-        Player player2 = new Player();
+        Player player1;
+        Player player2;
+        bool isComputer;
 
 
-            public void DetermineIfComputer()
+        public void DetermineIfComputer()
+        {
+            string choice;
+            choice = Console.ReadLine();
+            switch (choice.ToLower())
+            {
+                case "computer":
+                    isComputer = true;
+                    break;
+                case "human":
+                    isComputer = false;
+                    break;
+                default:
+                    Console.WriteLine("Enter valid choice. 'computer' or 'human'");
+                    DetermineIfComputer();
+                    break;
+            }
+        }
+        public void GeneratePlayers()
         {
             Console.WriteLine("Enter 'human' to play with 2 people, or 'computer' to play alone.");
-            player2.DetermineIfComputer();
-            if (player2.isComputer) {
+            DetermineIfComputer();
+            if (isComputer) {
 
                 player1 = new HumanPlayer("player 1");
                 player2 = new ComputerPlayer();
 
             }
 
-            else if (!player2.isComputer)
+            else if (!isComputer)
             {
                 player1 = new HumanPlayer("player 1");
                 player2 = new HumanPlayer("player 2");
@@ -32,6 +51,7 @@ namespace RevisedRockPaperScissorsProject
 
             
         }
+        
   
         public int DetermineWinner()
         {
@@ -82,7 +102,8 @@ namespace RevisedRockPaperScissorsProject
         public void Initialize()
 
         {
-            DetermineIfComputer();
+            
+            GeneratePlayers();
             player1.GetName();
             player2.GetName();
             PlayGame();
