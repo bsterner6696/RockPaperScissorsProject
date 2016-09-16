@@ -10,13 +10,14 @@ namespace RevisedRockPaperScissorsProject
     {
         public int playerChoice;
         public string name;
+        public bool isComputer;
 
+        
         public void GetName()
         {
-            name = Console.ReadLine();
-
+                name = Console.ReadLine();
         }
-        public void GetPlayerChoice()
+        public virtual void GetChoice()
         {
             string choice;
             choice = Console.ReadLine();
@@ -37,13 +38,14 @@ namespace RevisedRockPaperScissorsProject
                 case "spock":
                     playerChoice = 3;
                     break;
+
                 case "lizard":
                     playerChoice = 4;
                     break;
 
                 default:
                     Console.WriteLine("Enter a valid option.");
-                    GetPlayerChoice();
+                    GetChoice();
                     break;
             }
         }

@@ -9,28 +9,10 @@ namespace RevisedRockPaperScissorsProject
     class Game
     {
         public int winner;
-        Player player1 = new Player();
-        ComputerPlayer player2 = new ComputerPlayer();
-        bool isComputer;
 
-        public void DetermineIfComputer()
-        {
-            string choice;
-            choice = Console.ReadLine();
-            switch (choice.ToLower())
-            {
-                case "computer":
-                    this.isComputer = true;
-                    break;
-                case "human":
-                    this.isComputer = false;
-                    break;
-                default:
-                    Console.WriteLine("Enter valid choice. 'computer' or 'human'");
-                    this.DetermineIfComputer();
-                    break;
-            }
-        }
+        HumanPlayer player1 = new HumanPlayer("player 1");
+        SecondPlayer player2 = new SecondPlayer();
+        
         public int DetermineWinner()
         {
             int result;
@@ -39,6 +21,7 @@ namespace RevisedRockPaperScissorsProject
 
             return result;
         }
+
         public void AssignWinner()
         {
             int result;
@@ -80,31 +63,21 @@ namespace RevisedRockPaperScissorsProject
 
         {
             Console.WriteLine("Enter 'human' to play with 2 people, or 'computer' to play alone.");
-            DetermineIfComputer();
-            Console.WriteLine("Enter name for player 1.");
-            player1.GetName();
-            if (!isComputer)
-            {
-                Console.WriteLine("Enter name for player 2.");
-                player2.GetName();
-            }
+            player2.DetermineIfComputer();
+            player1.name = "player 1";
+            Console.WriteLine("Enter name for {0}.",player1.name);
+            player1.GetName();            
+            Console.WriteLine("Enter name for {0}.",player2.name);
+            player2.GetName();
             PlayGame();
         }
         public void PlayGame()
         {
             Console.WriteLine("{0} chooses.", player1.name);
-            player1.GetPlayerChoice();
-            if (isComputer)
-            {
-                player2.ChooseAtRandom();
-                player2.DisplayComputerChoice();
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("{0} chooses.", player2.name);
-                player2.GetPlayerChoice();
-            }
+            player1.GetChoice();
+            Console.Clear();
+            Console.WriteLine("{0} chooses.", player2.name);
+            player2.GetChoice();
             AssignWinner();
             DeclareWinner();
             PlayAgain();
@@ -132,6 +105,7 @@ namespace RevisedRockPaperScissorsProject
                     break;
                 default:
                     Console.WriteLine("Enter valid option.");
+                    PlayAgain();
                     break;
             }
         }
