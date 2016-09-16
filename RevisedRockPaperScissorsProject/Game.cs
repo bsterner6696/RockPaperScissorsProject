@@ -119,7 +119,7 @@ namespace RevisedRockPaperScissorsProject
         public void PlayAgain()
         {
             string choice = AskToPlayAgain();
-            switch (choice)
+            switch (choice.ToLower())
             {
                 case "y":
                 case "yes":
