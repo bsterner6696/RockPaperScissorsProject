@@ -10,15 +10,18 @@ namespace RevisedRockPaperScissorsProject
     {
         public int playerChoice;
         public string name;
-        public bool isComputer;
 
+
+        public bool isComputer;
         
-        public void GetName()
+        public virtual void GetName()
         {
-                name = Console.ReadLine();
+            Console.WriteLine("Enter name for {0}.", name);
+            name = Console.ReadLine();
         }
         public virtual void GetChoice()
         {
+            Console.WriteLine("{0} chooses.", name);
             string choice;
             choice = Console.ReadLine();
             switch (choice.ToLower())
@@ -49,7 +52,25 @@ namespace RevisedRockPaperScissorsProject
                     break;
             }
         }
+        public void DetermineIfComputer()
+        {
+            string choice;
+            choice = Console.ReadLine();
+            switch (choice.ToLower())
+            {
+                case "computer":
+                    isComputer = true;
+                    break;
+                case "human":
+                    isComputer = false;
+                    name = "player 2";
+                    break;
+                default:
+                    Console.WriteLine("Enter valid choice. 'computer' or 'human'");
+                    DetermineIfComputer();
+                    break;
+            }
+        }
 
-       
     }
 }

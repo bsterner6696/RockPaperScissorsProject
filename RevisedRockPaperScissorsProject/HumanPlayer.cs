@@ -8,7 +8,9 @@ namespace RevisedRockPaperScissorsProject
 {
     public class HumanPlayer: Player
     {
-        public HumanPlayer(string name)
+       
+
+       public HumanPlayer(string name)
         {
             this.name = name;
         }

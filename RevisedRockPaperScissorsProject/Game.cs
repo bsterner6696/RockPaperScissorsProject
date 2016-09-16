@@ -9,10 +9,30 @@ namespace RevisedRockPaperScissorsProject
     class Game
     {
         public int winner;
+        Player player1 = new Player();
+        Player player2 = new Player();
 
-        HumanPlayer player1 = new HumanPlayer("player 1");
-        SecondPlayer player2 = new SecondPlayer();
-        
+
+            public void DetermineIfComputer()
+        {
+            Console.WriteLine("Enter 'human' to play with 2 people, or 'computer' to play alone.");
+            player2.DetermineIfComputer();
+            if (player2.isComputer) {
+
+                player1 = new HumanPlayer("player 1");
+                player2 = new ComputerPlayer();
+
+            }
+
+            else if (!player2.isComputer)
+            {
+                player1 = new HumanPlayer("player 1");
+                player2 = new HumanPlayer("player 2");
+            }
+
+            
+        }
+  
         public int DetermineWinner()
         {
             int result;
@@ -59,24 +79,19 @@ namespace RevisedRockPaperScissorsProject
                 Console.WriteLine("{0} wins.", player2.name);
             };
         }
-        public void InitializeGame()
+        public void Initialize()
 
         {
-            Console.WriteLine("Enter 'human' to play with 2 people, or 'computer' to play alone.");
-            player2.DetermineIfComputer();
-            player1.name = "player 1";
-            Console.WriteLine("Enter name for {0}.",player1.name);
-            player1.GetName();            
-            Console.WriteLine("Enter name for {0}.",player2.name);
+            DetermineIfComputer();
+            player1.GetName();
             player2.GetName();
             PlayGame();
         }
         public void PlayGame()
         {
-            Console.WriteLine("{0} chooses.", player1.name);
+            
             player1.GetChoice();
             Console.Clear();
-            Console.WriteLine("{0} chooses.", player2.name);
             player2.GetChoice();
             AssignWinner();
             DeclareWinner();

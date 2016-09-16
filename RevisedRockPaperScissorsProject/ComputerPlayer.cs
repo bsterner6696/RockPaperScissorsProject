@@ -10,32 +10,38 @@ namespace RevisedRockPaperScissorsProject
     {
         public ComputerPlayer()
         {
-            name = "The Computer";
+            name = "Computer";
         }
         Random rnd = new Random();
-        public void ChooseAtRandom()
+        public override void GetChoice()
         {
-            playerChoice = rnd.Next(5);
+                playerChoice = rnd.Next(5);
+                DisplayComputerChoice();
         }
         public void DisplayComputerChoice()
         {
             switch (playerChoice)
             {
                 case 0:
-                    Console.WriteLine("The computer chooses rock");
+                    Console.WriteLine("{0} chooses rock",name);
                     break;
+
                 case 1:
-                    Console.WriteLine("The computer chooses paper");
+                    Console.WriteLine("{0} chooses paper",name);
                     break;
+
                 case 2:
-                    Console.WriteLine("The computer chooses scissors");
+                    Console.WriteLine("{0} chooses scissors",name);
                     break;
+
                 case 3:
-                    Console.WriteLine("The computer chooses Spock");
+                    Console.WriteLine("{0} chooses Spock",name);
                     break;
+
                 case 4:
-                    Console.WriteLine("The computer chooses lizard");
+                    Console.WriteLine("{0} chooses lizard",name);
                     break;
+
                 default:
                     break;
             }
